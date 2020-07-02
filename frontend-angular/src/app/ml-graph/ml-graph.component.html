@@ -1,0 +1,69 @@
+
+<div class="jumbotron">
+  <div class="container">
+      <div class="row">
+          <div class="col-md-6 ">
+              <h3>forecast based on category</h3>
+              <form name="form" (ngSubmit)="f.form.valid && onSubmit()" #f="ngForm" novalidate>
+
+                  <div class="form-group">
+                      <label for="password">Item</label>
+                      <select class="form-control" id="item" [(ngModel)]="model.name" #name="ngModel" required name="item">
+                          <option *ngFor="let item of items" [value]="item">{{ item }}</option>
+                        </select>
+                  </div>
+
+                  <div class="form-group">
+                      <label for="firstName">Duration in months</label>
+                      <input type="text" class="form-control" name="duration" [(ngModel)]="model.duration" #duration="ngModel" [ngClass]="{ 'is-invalid': f.submitted && duration.invalid }" required />
+                      <div *ngIf="f.submitted && duration.invalid" class="invalid-feedback">
+                          <div *ngIf="duration.errors.required">First Name is required</div>
+                      </div>
+                  </div>
+
+                  <div class="form-group">
+                      <button class="btn btn-primary">Register</button>
+                  </div>
+              </form>
+          </div>
+          <div class="col-md-6 ">
+            <h3>Forecast Based On sub-Category</h3>
+            <form name="form" (ngSubmit)="f.form.valid && onSubmit1()" #f="ngForm" novalidate>
+
+                <div class="form-group">
+                    <label for="password">Item</label>
+                    <select class="form-control" id="item" [(ngModel)]="model1.name" #name="ngModel" required name="item">
+                        <option *ngFor="let item of items1" [value]="item">{{ item }}</option>
+                      </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="firstName">Duration in months</label>
+                    <input type="text" class="form-control" name="duration" [(ngModel)]="model1.duration" #duration="ngModel" [ngClass]="{ 'is-invalid': f.submitted && duration.invalid }" required />
+                    <div *ngIf="f.submitted && duration.invalid" class="invalid-feedback">
+                        <div *ngIf="duration.errors.required">First Name is required</div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <button class="btn btn-primary">Register</button>
+                </div>
+            </form>
+        </div>
+      </div>
+  </div>
+</div>
+
+
+<div class="charts">
+    <canvas baseChart width="1200" height="700"
+      [datasets]="lineChartData"
+      [labels]="lineChartLabels"
+      [options]="lineChartOptions"
+      [colors]="lineChartColors"
+      [legend]="lineChartLegend"
+      [chartType]="lineChartType"
+      [plugins]="lineChartPlugins">
+    </canvas>
+  </div>
+
